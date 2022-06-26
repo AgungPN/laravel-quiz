@@ -27,5 +27,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    /*  Course */
     Route::get("/course", Course::class);
+    Route::delete("course/{course}", Course::class);
 });
