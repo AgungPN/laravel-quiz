@@ -42,10 +42,10 @@
                                                 class="py-4 px-7 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $c->course }}</td>
                                             <td class="py-4 px-7 text-sm font-medium text-right whitespace-nowrap">
-                                                <a href="#"
+                                                <a
                                                     class="text-green-600 dark:text-green-500 hover:underline font-bold">{{
                                                     __("Edit") }}</a>
-                                                <a wire:click="$emit('triggerDelete', {{ $c->id }})" href="#"
+                                                <a wire:click="deleteConfirm({{$c->id}})"
                                                     class="text-red-600 dark:text-red-500 hover:underline ml-2 font-bold">{{
                                                     __("Delete") }}</a>
                                             </td>
@@ -68,8 +68,7 @@
             </div>
 
             {{-- form --}}
-            {{-- <x-admin.form-course> --}}
-            @livewire('tes')
+            <livewire:admin.course.form>
 
         </div>
 
@@ -78,35 +77,32 @@
 
 </div>
 
+
 @push('scripts')
 
 <script>
-    document.addEventListener('DOMContentLoaded',function () {
-/*         @this.on('triggerDelete',courseId => {
+    window.addEventListener("confirm:delete",function (event) {
             Swal.fire({
-              title: 'Are you sure?',
-              text: "You won't be able to revert this!",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
+                title:"Are you sure?",
+                text:`to delete course: ${event.detail.course}`,
+                icon:"warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
               if (result.isConfirmed) {
-                @this.call('destroy',contactId)
-                Swal.fire( 'Deleted!', 'Your file has been deleted.', 'success')
+                @this.call('destroy',event.detail.id)
+                Swal.fire( 'Deleted!', 'Your course has been deleted.', 'success')
               }else{
-                Swal.fire("Operation Cancelled!","cs")
+                Swal.fire("Operation Cancelled!","Cancelled delete course!")
               }
             })
-        }) */
-    @this.on('triggerDelete', id => {
-        const isConfirm = confirm("Delete " + id)
-        if(isConfirm){
-            @this.call("destroy",id)
-        }
-    })
-})
+
+        })
 </script>
 
 @endpush
+
+{{-- TODO: make componen --}}
+{{-- <livewire:push-script> --}}

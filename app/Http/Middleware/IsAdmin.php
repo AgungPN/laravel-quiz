@@ -18,7 +18,7 @@ class IsAdmin
     {
         return match (auth()->user()->level) {
             "admin" => $next($request),
-            default => redirect('/')
+            default => abort(404),
         };
     }
 }

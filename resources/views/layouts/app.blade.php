@@ -44,8 +44,8 @@
 
         @stack('modals')
 
-        @include('sweetalert::alert',['//cdn.jsdelivr.net/npm/sweetalert2@11'])
         @livewireScripts
+        @include('sweetalert::alert',['//cdn.jsdelivr.net/npm/sweetalert2@11'])
         @stack('scripts')
     </body>
     </html>

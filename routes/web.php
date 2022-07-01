@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Admin\Course;
+use App\Http\Livewire\Admin\Course\Course;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +29,4 @@ Route::middleware([
     })->name('dashboard');
     /*  Course */
     Route::get("/course", Course::class);
-    Route::delete("course/{course}", Course::class);
 });
